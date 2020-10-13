@@ -15,6 +15,7 @@ router.post('/', (req,res) => {
       }
 
       if(bcrypt.compareSync(req.body.password, user[0].password)) {
+        req.session.userid = user[0].id;
         return res.status(202).json({ message: 'Logged in :)' });
       } else {
         return res.status(400).json({ message: 'Invalid credentials' });
